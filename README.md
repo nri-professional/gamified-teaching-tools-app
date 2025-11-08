@@ -8,8 +8,11 @@ Once repository is cloned / pulled, run with
 Working latest latest version of Node.js found here: https://nodejs.org/en
 
 `cd gamified-teaching-tools-app`
+
 `cd gamified-teaching-tools-app`
+
 `npm install`
+
 `npm run dev`
 
 # Repository Guide:
