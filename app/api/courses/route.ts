@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 // GET /api/courses
+// Public: list courses for homepage
 export async function GET() {
     const supabase = await createClient();
 
@@ -23,6 +24,8 @@ export async function GET() {
 }
 
 // POST /api/courses
+// Auth required: create a course owned by current user
+// Body: { title, slug, description? }
 export async function POST(req: Request) {
     const supabase = await createClient();
 
