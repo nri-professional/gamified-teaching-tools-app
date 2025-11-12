@@ -37,7 +37,9 @@ export function LoginForm({
       // Attempt sign in
       await signIn(email,password);
       // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      // router.push("/protected");
+      // Redirect to main menu on successful login
+      router.push("/protected/main-menu");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -71,12 +73,14 @@ export function LoginForm({
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <Link
+                  
+                  {/* Implement later if desired. */}
+                  {/* <Link
                     href="/auth/forgot-password"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
-                  </Link>
+                  </Link> */}
                 </div>
                 <Input
                   id="password"
