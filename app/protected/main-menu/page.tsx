@@ -13,7 +13,7 @@ export default function Page() {
                 </CardHeader>
                 <CardContent>
                     <p className="text-sm text-muted-foreground mb-4">
-                        This is linked in sign-up-sucess's page.tsx, 
+                        This is linked in sign-up-success's page.tsx, 
                         so remember to change that as well if you update this route.</p>
                 </CardContent>
             </Card>

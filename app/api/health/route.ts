@@ -28,7 +28,7 @@ export async function GET() {
             stage: "connected",
             sampleCourseIds: data?.map((c) => c.id) ?? [],
         });
-    } catch (err: any) {
+    } catch (err: any) { /*An AI thinks this should be changed to unknown vs any*/
         return NextResponse.json(
             {
                 ok: false,
