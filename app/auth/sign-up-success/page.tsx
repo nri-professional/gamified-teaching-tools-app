@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -14,13 +15,18 @@ export default function Page() {
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl">Thank you for signing up!</CardTitle>
-              <CardDescription>Check your email to confirm</CardDescription>
+              <CardDescription>Your account has been successfully created.</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                You&apos;ve successfully signed up. Please check your email to
-                confirm your account before signing in.
+                You&apos;re in! Welcome to LearnQuest.
               </p>
+              <Link
+                href="/auth/login"
+                className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+              >
+                Click here to go to the login screen and log in!
+              </Link>
             </CardContent>
           </Card>
         </div>
