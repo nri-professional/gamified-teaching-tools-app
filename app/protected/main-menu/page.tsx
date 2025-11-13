@@ -1,4 +1,4 @@
-/* This code was a mix of AI code and human code */
+
 'use client';
 
 import { Flame, BookOpen, Trophy, User, FilePlus } from 'lucide-react';
@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <main
       className="relative min-h-screen bg-center bg-cover flex items-center justify-center"
-      style={{ /* there is no image for this yet so it is doing the Fallback color/gradient*/
+      style={{ 
         backgroundImage: "url('/images/zelda-village-bg.png')",
       }}
     >
