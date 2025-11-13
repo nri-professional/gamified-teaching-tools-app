@@ -1,3 +1,7 @@
+/* This code was AI generated
+  prompt: now create a UI for leaderboards
+*/
+
 'use client';
 
 import { Trophy, Medal, Crown, Flame, ArrowLeft } from 'lucide-react';
