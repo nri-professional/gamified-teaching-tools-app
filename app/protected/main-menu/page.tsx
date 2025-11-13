@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { Flame, BookOpen, Trophy, User, FilePlus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function Page() {
   return (
@@ -22,7 +24,6 @@ export default function Page() {
         {/* Title */}
         <h1
           className="text-6xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg mb-8 text-center"
-          style={{ fontFamily: 'serif' }}
         >
           LearnQuest
         </h1>
@@ -30,41 +31,47 @@ export default function Page() {
         {/* Streak */}
         <div
           className="flex items-center gap-3 text-3xl font-semibold text-[#d9c280] mb-10"
-          style={{ fontFamily: 'serif' }}
         >
           <Flame className="w-8 h-8 text-orange-300 drop-shadow-md" />
           5 Day Streak!
         </div>
 
         {/* Menu */}
-        <nav
-          className="flex flex-col gap-6 text-2xl text-[#f5e6c5] w-full"
-          style={{ fontFamily: 'serif' }}
-        >
-          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
-            <BookOpen className="w-7 h-7 text-[#c8a24a]" />
-            Your Courses
-          </button>
+        <nav className="flex flex-col gap-6 text-2xl text-[#f5e6c5] w-full">
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/your-courses" className="flex items-center gap-4">
+              <BookOpen className="w-7 h-7 text-[#c8a24a]" />
+              Your Courses
+            </Link>
+          </Button>
 
-          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
-            <Trophy className="w-7 h-7 text-[#c8a24a]" />
-            Leaderboards
-          </button>
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/leaderboards" className="flex items-center gap-4">
+              <Trophy className="w-7 h-7 text-[#c8a24a]" />
+              Leaderboards
+            </Link>
+          </Button>
 
-          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
-            <User className="w-7 h-7 text-[#c8a24a]" />
-            Profile
-          </button>
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/profile" className="flex items-center gap-4">
+              <User className="w-7 h-7 text-[#c8a24a]" />
+              Profile
+            </Link>
+          </Button>
 
-          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
-            <BookOpen className="w-7 h-7 text-[#c8a24a]" />
-            Browse Courses
-          </button>
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/browse-courses" className="flex items-center gap-4">
+              <BookOpen className="w-7 h-7 text-[#c8a24a]" />
+              Browse Courses
+            </Link>
+          </Button>
 
-          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
-            <FilePlus className="w-7 h-7 text-[#c8a24a]" />
-            Create Lessons
-          </button>
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/create-lessons" className="flex items-center gap-4">
+              <FilePlus className="w-7 h-7 text-[#c8a24a]" />
+              Create Lessons
+            </Link>
+          </Button>
         </nav>
       </div>
     </main>
