@@ -22,11 +22,11 @@ export default function Page() {
       }}
     >
       {/* Fallback color/gradient in case the image doesn't load */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-750 to-amber-200 opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-750 to-amber-200 opacity-75" />
 
       {/* Main parchment panel - centered */}
       <div
-        className="relative z-10 flex flex-col items-center p-16 max-w-lg w-full mx-4
+        className="relative z-10 flex flex-col items-center p-16 max-w-lg w-full mx-14
                    bg-[rgba(40,25,10,0.9)] shadow-2xl border-4 border-[#c8a24a] rounded-xl
                    backdrop-blur-sm"
       >
