@@ -5,24 +5,23 @@ import { Flame, BookOpen, Trophy, User, FilePlus } from 'lucide-react';
 export default function Page() {
   return (
     <main
-      className="relative min-h-screen bg-center bg-cover"
+      className="relative min-h-screen bg-center bg-cover flex items-center justify-center"
       style={{
-        // <- put your image in /public/images/zelda-village-bg.png
-        backgroundImage: "url('https://www.google.com/imgres?q=background%20images%20for%20games%20blurd&imgurl=https%3A%2F%2Fc4.wallpaperflare.com%2Fwallpaper%2F951%2F583%2F798%2Ffantasy-art-warrior-dark-souls-iii-dark-souls-wallpaper-preview.jpg')",
+        backgroundImage: "url('/images/zelda-village-bg.png')",
       }}
     >
       {/* Fallback color/gradient in case the image doesn't load */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-900 to-amber-900 opacity-70" />
 
-      {/* Main parchment panel */}
+      {/* Main parchment panel - centered */}
       <div
-        className="relative z-10 flex flex-col items-start p-16 mt-10 ml-10 max-w-lg
+        className="relative z-10 flex flex-col items-center p-16 max-w-lg w-full mx-4
                    bg-[rgba(40,25,10,0.9)] shadow-2xl border-4 border-[#c8a24a] rounded-xl
                    backdrop-blur-sm"
       >
         {/* Title */}
         <h1
-          className="text-6xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg mb-8"
+          className="text-6xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg mb-8 text-center"
           style={{ fontFamily: 'serif' }}
         >
           LearnQuest
@@ -39,30 +38,30 @@ export default function Page() {
 
         {/* Menu */}
         <nav
-          className="flex flex-col gap-6 text-2xl text-[#f5e6c5]"
+          className="flex flex-col gap-6 text-2xl text-[#f5e6c5] w-full"
           style={{ fontFamily: 'serif' }}
         >
-          <button className="flex items-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
+          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
             <BookOpen className="w-7 h-7 text-[#c8a24a]" />
             Your Courses
           </button>
 
-          <button className="flex items-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
+          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
             <Trophy className="w-7 h-7 text-[#c8a24a]" />
             Leaderboards
           </button>
 
-          <button className="flex items-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
+          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
             <User className="w-7 h-7 text-[#c8a24a]" />
             Profile
           </button>
 
-          <button className="flex items-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
+          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
             <BookOpen className="w-7 h-7 text-[#c8a24a]" />
             Browse Courses
           </button>
 
-          <button className="flex items-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
+          <button className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all">
             <FilePlus className="w-7 h-7 text-[#c8a24a]" />
             Create Lessons
           </button>
