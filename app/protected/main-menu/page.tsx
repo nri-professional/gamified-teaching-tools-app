@@ -22,7 +22,7 @@ export default function Page() {
                    backdrop-blur-sm"
       >
         {/* Title */}
-        <h1
+        <h1 
           className="text-6xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg mb-8 text-center"
         >
           LearnQuest
