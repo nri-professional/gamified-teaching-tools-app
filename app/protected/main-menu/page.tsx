@@ -11,7 +11,7 @@ export default function Page() {
       }}
     >
       {/* Fallback color/gradient in case the image doesn't load */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-900 to-amber-900 opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-750 to-amber-200 opacity-70" />
 
       {/* Main parchment panel - centered */}
       <div
