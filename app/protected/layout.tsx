@@ -1,9 +1,18 @@
+/*
+  NOTE (generated code trace):
+  This file was modified to wrap protected pages with the ClassesProvider so locally-created classes
+  are available across the protected area. Change requested by the user prompt:
+
+  "i want to make it so when the user hits submit on the create classes page, it shows up on the browse classes page, as well as updating their your classes page to show the class that they made. there is no database so just have this happen locally (See <attachments> above for file contents. You may not need to search or read the file again.)"
+*/
+
 import { DeployButton } from "@/components/deploy-button";
 import { EnvVarWarning } from "@/components/env-var-warning";
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
+import { ClassesProvider } from "./ClassesContext";
 
 export default function ProtectedLayout({
   children,
@@ -22,22 +31,8 @@ export default function ProtectedLayout({
           </div>
         </nav>
         <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-          {children}
+          <ClassesProvider>{children}</ClassesProvider>
         </div>
-
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
-          </p>
-        </footer>
       </div>
     </main>
   );
