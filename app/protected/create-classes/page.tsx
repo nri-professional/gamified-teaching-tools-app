@@ -1,3 +1,11 @@
+/*
+  NOTE (generated code trace):
+  Changes in this file implement creating a class and saving it locally so it appears in Browse and Your Classes.
+
+  User prompt that led to these changes:
+  "i want to make it so when the user hits submit on the create classes page, it shows up on the browse classes page, as well as updating their your classes page to show the class that they made. there is no database so just have this happen locally (See <attachments> above for file contents. You may not need to search or read the file again.)"
+*/
+
 "use client";
 
 import { useState } from "react";
@@ -6,6 +14,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
+import { useRouter } from "next/navigation";
+import { useClasses } from "../ClassesContext";
 
 type QAItem = {
   question: string;
@@ -16,6 +26,9 @@ export default function Page2() {
   const [qaList, setQaList] = useState<QAItem[]>([
     { question: "", answer: "" },
   ]);
+  const [dungeonTitle, setDungeonTitle] = useState("");
+  const { addClass } = useClasses();
+  const router = useRouter();
 
   const addQuestion = () => {
     setQaList((prev) => [...prev, { question: "", answer: "" }]);
@@ -31,12 +44,14 @@ export default function Page2() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submit lesson:", qaList);
+    const title = dungeonTitle || "Untitled Lesson";
+    addClass(title, qaList);
+    // navigate to browse so the user sees the created class
+    router.push("/protected/browse-classes");
   };
 
   return (
-    <BackgroundWrapper>
-        <Card className="w-full max-w-[85vw] border-2 border-black bg-transparent text-slate-50 rounded-3xl">
+  <Card className="w-full max-w-[85vw] border-2 border-white bg-transparent text-slate-50 rounded-3xl">
 
         <CardContent className="p-6">
           {/* TOP BAR: title only, full width */}
@@ -62,6 +77,8 @@ export default function Page2() {
                   id="dungeonTitle"
                   name="dungeonTitle"
                   placeholder="Title Dungeon"
+                  value={dungeonTitle}
+                  onChange={(e) => setDungeonTitle(e.target.value)}
                   className="rounded-full border border-black/70 bg-black/20 backdrop-blur-sm"
                 />
               </div>
@@ -138,6 +155,5 @@ export default function Page2() {
           </form>
         </CardContent>
       </Card>
-    </BackgroundWrapper>
   );
 }

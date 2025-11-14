@@ -1,14 +1,26 @@
-/* This code was AI generated
-  prompt: now create a UI for leaderboards
+'use client';
+/*
+  NOTE (generated code trace):
+  The Leaderboards page was modified by assistant edits in response to these user prompts:
+
+  1) "for the leaderboards page remove the gradient background, match the font seen on the main page and make it aesthetically pleasing please. (See <attachments> above for file contents. You may not need to search or read the file again.)"
+
+  2) "make the back button functional which should return you to the main menu, also the font did not change for some reason"
+
+  3) "Space the back button properly, i don't think the window is large enough at the moment"
+
+  Changes include: removed background image/overlay, softened rank row styles, wired Back button to use Next.js navigation, and made header responsive.
 */
 
 'use client';
 
 import { Trophy, Medal, Crown, Flame, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
-  const [activeTab, setActiveTab] = useState('weekly');
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<'weekly' | 'allTime'>('weekly');
 
   const leaderboardData = {
     weekly: [
@@ -33,54 +45,42 @@ export default function Page() {
     ],
   };
 
-  const currentData = leaderboardData[activeTab];
+  const currentData = leaderboardData[activeTab as 'weekly' | 'allTime'];
 
-  const getRankIcon = (rank) => {
+  const getRankIcon = (rank: number) => {
     if (rank === 1) return <Crown className="w-6 h-6 text-yellow-400" />;
     if (rank === 2) return <Medal className="w-6 h-6 text-gray-300" />;
     if (rank === 3) return <Medal className="w-6 h-6 text-amber-600" />;
     return <span className="text-[#c8a24a] font-bold">{rank}</span>;
   };
 
-  const getRankBg = (rank) => {
-    if (rank === 1) return 'bg-gradient-to-r from-yellow-600/30 to-yellow-800/30 border-yellow-500/50';
-    if (rank === 2) return 'bg-gradient-to-r from-gray-400/20 to-gray-600/20 border-gray-400/50';
-    if (rank === 3) return 'bg-gradient-to-r from-amber-600/20 to-amber-800/20 border-amber-600/50';
-    return 'bg-[rgba(60,45,20,0.5)] border-[#c8a24a]/30';
+  const getRankBg = (rank: number) => {
+    if (rank === 1) return 'bg-[rgba(200,162,74,0.06)] border-yellow-500/30';
+    if (rank === 2) return 'bg-[rgba(200,200,200,0.02)] border-gray-300/25';
+    if (rank === 3) return 'bg-[rgba(255,165,0,0.03)] border-amber-600/25';
+    return 'bg-[rgba(60,45,20,0.25)] border-[#c8a24a]/20';
   };
 
   return (
-    <main
-      className="relative min-h-screen bg-center bg-cover flex items-center justify-center py-12"
-      style={{
-        backgroundImage: "url('/images/zelda-village-bg.png')",
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-900 to-amber-900 opacity-70" />
+    <main className="min-h-screen flex items-center justify-center py-12">
 
       <div
-        className="relative z-10 flex flex-col items-center p-12 max-w-3xl w-full
-                   bg-[rgba(40,25,10,0.95)] shadow-2xl border-4 border-[#c8a24a] rounded-xl
-                   backdrop-blur-sm"
+        className="relative z-10 flex flex-col items-center p-10 max-w-4xl w-full
+                   bg-[rgba(30,28,24,0.95)] shadow-2xl border-2 border-[#c8a24a]/30 rounded-2xl"
       >
         {/* Header */}
-        <div className="flex items-center justify-between w-full mb-8">
-          <button className="flex items-center gap-2 text-[#c8a24a] hover:text-[#f5e6c5] transition-colors">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full mb-8 gap-4">
+          <button onClick={() => router.push('/protected/main-menu')} className="self-start md:self-auto flex items-center gap-2 text-[#c8a24a] hover:text-[#f5e6c5] transition-colors">
             <ArrowLeft className="w-6 h-6" />
-            <span className="text-lg" style={{ fontFamily: 'serif' }}>Back</span>
+            <span className="text-lg text-[#f5e6c5]">Back</span>
           </button>
-          
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
             <Trophy className="w-10 h-10 text-[#c8a24a]" />
-            <h1
-              className="text-5xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg"
-              style={{ fontFamily: 'serif' }}
-            >
+            <h1 className="text-4xl md:text-5xl font-bold tracking-wide text-[#f5e6c5] drop-shadow-lg text-center md:text-left">
               Leaderboards
             </h1>
           </div>
-          
-          <div className="w-20" />
         </div>
 
         {/* Tabs */}
@@ -92,7 +92,6 @@ export default function Page() {
                 ? 'bg-[#c8a24a] text-[#281909] border-[#c8a24a]'
                 : 'bg-transparent text-[#c8a24a] border-[#c8a24a] hover:bg-[#c8a24a]/20'
             }`}
-            style={{ fontFamily: 'serif' }}
           >
             Weekly
           </button>
@@ -103,7 +102,6 @@ export default function Page() {
                 ? 'bg-[#c8a24a] text-[#281909] border-[#c8a24a]'
                 : 'bg-transparent text-[#c8a24a] border-[#c8a24a] hover:bg-[#c8a24a]/20'
             }`}
-            style={{ fontFamily: 'serif' }}
           >
             All Time
           </button>
@@ -111,7 +109,7 @@ export default function Page() {
 
         {/* Leaderboard List */}
         <div className="w-full space-y-3">
-          {currentData.map((player) => (
+          {currentData.map((player: any) => (
             <div
               key={player.rank}
               className={`flex items-center justify-between p-4 rounded-lg border-2 transition-all hover:scale-[1.02] ${getRankBg(
@@ -125,10 +123,7 @@ export default function Page() {
                 </div>
                 <div className="text-4xl">{player.avatar}</div>
                 <div>
-                  <div
-                    className="text-xl font-semibold text-[#f5e6c5]"
-                    style={{ fontFamily: 'serif' }}
-                  >
+                  <div className="text-xl font-semibold text-[#f5e6c5]">
                     {player.name}
                   </div>
                   <div className="flex items-center gap-2 text-sm text-[#d9c280]">
@@ -139,12 +134,7 @@ export default function Page() {
               </div>
 
               {/* XP */}
-              <div
-                className="text-2xl font-bold text-[#c8a24a]"
-                style={{ fontFamily: 'serif' }}
-              >
-                {player.xp.toLocaleString()} XP
-              </div>
+              <div className="text-2xl font-bold text-[#c8a24a]">{player.xp.toLocaleString()} XP</div>
             </div>
           ))}
         </div>
@@ -155,21 +145,11 @@ export default function Page() {
             <div className="flex items-center gap-4">
               <div className="text-2xl">👤</div>
               <div>
-                <div
-                  className="text-lg font-semibold text-[#f5e6c5]"
-                  style={{ fontFamily: 'serif' }}
-                >
-                  Your Rank: #42
-                </div>
+                <div className="text-lg font-semibold text-[#f5e6c5]">Your Rank: #42</div>
                 <div className="text-sm text-[#d9c280]">Keep learning to climb higher!</div>
               </div>
             </div>
-            <div
-              className="text-xl font-bold text-[#c8a24a]"
-              style={{ fontFamily: 'serif' }}
-            >
-              890 XP
-            </div>
+            <div className="text-xl font-bold text-[#c8a24a]">890 XP</div>
           </div>
         </div>
       </div>
