@@ -109,3 +109,25 @@ Not really directly. Whenever an issue was had, the LLM was just queried again a
 # Leaderboards AI Usage
 
 prompt: now create a UI for leaderboards
+
+## Features implemented through AI Adrian Villatoro
+
+For this assignment, I used ChatGPT to help generate several UI-related functions and components for my portion, including: 
+
+The dynamic question/answer system for the Create Lesson page (Page2), 
+The Your Classes page (Page3), and 
+The shared BackgroundWrapper component that applies a blurred landscape background image. 
+
+Throughout development, I asked ChatGPT to refactor layouts into landscape format, resolve overlapping layout issues, and convert all UI code into TypeScript .tsx using my existing component library (Card, Input, Button, Label). Additionally, ChatGPT provided styling guidance such as removing dark gradient overlays, switching to transparent glass-style cards with black outlines, matching sizing between pages, and adjusting Tailwind classes like max-w-[85vw], bg-transparent, and backdrop-blur-sm.
+
+Prompts used: 
+“Can you create  this UI in webapp form using TypeScript with only the selected components?”
+“Can you add an answer section for each question added?”
+“Remove the difficulty selector.”
+“Wrap the entire page in a blurred background image using this image link.”
+“Make the layout landscape instead of vertical.”
+“Fix the overlap between LearnQuest and the question box.”
+“After adding the third question, the submit button disappears. Can you fix that?”
+“Can you update the Your Classes page so it matches the Create Lesson card styling?”
+
+
