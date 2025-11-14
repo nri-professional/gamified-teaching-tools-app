@@ -1,14 +1,5 @@
 'use client';
 
-/*
-AI USAGE:
-Prompt: The design of this page is good, but I would like it to be more properly designed. Currently it looks like a mobile phone screen where the card everything is on isn't properly centered. Scan the #codebase to figure out proper coding type for this repository. We are using Next.js with shadcn and tailwind.
-Prompt: why is the text times new roman and not the regular next.js font
-Prompt: Can you make the text default next.js font instead of times new roman
-Prompt: How would I make the Buttons go to a <Link>?
-Prompt: Can you merge the functionality of the old-page, keep the new page's look though
-*/
-
 import Link from 'next/link';
 import { Flame, BookOpen, Trophy, User, FilePlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
