@@ -93,6 +93,7 @@ Prompt: Can you make the text default next.js font instead of times new roman
 Prompt: How would I make the Buttons go to a <Link>?
 Prompt: Can you merge the functionality of the old-page, keep the new page's look though
 
+## Prompts: - Julian Whitman
 Prompt: make a website front end with typescript, name of file is page.tsx. That is a not a mobile format
 Prompt: give me a different background
 Prompt: what line of code changes the background size
@@ -106,7 +107,7 @@ They were used to make development quick and to learn about the extent of these 
 ## Were any modifications neccesary to the prompts or code to get the submitted output? - Nicholas Ricketts
 Not really directly. Whenever an issue was had, the LLM was just queried again and it typically fixed the code.
 
-# Leaderboards AI Usage
+# Leaderboards AI Usage - Julian Whitman
 
 prompt: now create a UI for leaderboards
 
