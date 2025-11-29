@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    --background: 223 46% 6%;
-    --foreground: 45 100% 93%;
-    --card: 225 42% 10%;
-    --card-foreground: 45 100% 93%;
-    --popover: 223 46% 6%;
-    --popover-foreground: 45 100% 93%;
-    --primary: 39 92% 62%;
-    --primary-foreground: 222 47% 8%;
-    --secondary: 173 72% 42%;
-    --secondary-foreground: 45 100% 93%;
-    --muted: 225 32% 18%;
-    --muted-foreground: 44 35% 80%;
-    --accent: 10 74% 62%;
-    --accent-foreground: 45 100% 93%;
+    --background: 148 28% 8%;
+    --foreground: 43 56% 92%;
+    --card: 150 24% 11%;
+    --card-foreground: 43 56% 92%;
+    --popover: 148 28% 8%;
+    --popover-foreground: 43 56% 92%;
+    --primary: 96 42% 62%;
+    --primary-foreground: 142 52% 8%;
+    --secondary: 162 36% 40%;
+    --secondary-foreground: 43 56% 92%;
+    --muted: 152 18% 20%;
+    --muted-foreground: 43 30% 78%;
+    --accent: 33 62% 54%;
+    --accent-foreground: 43 56% 92%;
     --destructive: 352 79% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 224 38% 28%;
-    --input: 224 38% 26%;
-    --ring: 39 92% 62%;
-    --chart-1: 39 92% 62%;
-    --chart-2: 173 72% 42%;
-    --chart-3: 10 74% 62%;
-    --chart-4: 197 37% 44%;
+    --border: 152 26% 28%;
+    --input: 152 26% 24%;
+    --ring: 96 42% 62%;
+    --chart-1: 96 42% 62%;
+    --chart-2: 162 36% 40%;
+    --chart-3: 33 62% 54%;
+    --chart-4: 25 37% 44%;
     --chart-5: 326 70% 55%;
     --radius: 0.35rem;
   }
@@ -66,14 +66,14 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      radial-gradient(circle at 20% 20%, rgba(61, 216, 190, 0.14), transparent 25%),
-      radial-gradient(circle at 82% 0%, rgba(242, 193, 79, 0.18), transparent 28%),
-      radial-gradient(circle at 15% 80%, rgba(255, 109, 109, 0.12), transparent 22%),
-      linear-gradient(145deg, #0c1224 0%, #0a101f 40%, #0d1830 100%);
-    background-size: 28px 28px, 28px 28px, 82% 82%, 68% 68%, 55% 55%, 100% 100%;
-    background-position: 0 0, 0 0, 12% 12%, 70% 0%, 0% 100%, 0 0;
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      radial-gradient(circle at 18% 18%, rgba(116, 191, 99, 0.18), transparent 25%),
+      radial-gradient(circle at 82% 12%, rgba(236, 175, 93, 0.2), transparent 30%),
+      radial-gradient(circle at 20% 78%, rgba(67, 122, 94, 0.22), transparent 26%),
+      linear-gradient(145deg, #0f1c12 0%, #0b150e 38%, #12261a 100%);
+    background-size: 28px 28px, 28px 28px, 80% 80%, 65% 65%, 60% 60%, 100% 100%;
+    background-position: 0 0, 0 0, 15% 10%, 70% 5%, 8% 100%, 0 0;
     image-rendering: pixelated;
   }
 
@@ -94,17 +94,17 @@
 
 /* Pixel adventure helpers */
 .pixel-panel {
-  background: linear-gradient(145deg, rgba(26, 36, 66, 0.92), rgba(14, 20, 40, 0.92));
-  border: 3px solid #f2c14f;
+  background: linear-gradient(145deg, rgba(16, 34, 25, 0.9), rgba(12, 26, 18, 0.92));
+  border: 3px solid #d7b46a;
   box-shadow:
-    -8px 8px 0 #0a0f1c,
+    -8px 8px 0 #0a0f11,
     inset 0 0 0 2px rgba(255, 255, 255, 0.05),
     0 18px 45px rgba(0, 0, 0, 0.45);
 }
 
 .pixel-chip {
-  background: linear-gradient(135deg, rgba(39, 196, 173, 0.22), rgba(12, 18, 36, 0.8));
-  border: 2px solid #1dd0b1;
+  background: linear-gradient(135deg, rgba(116, 191, 99, 0.16), rgba(12, 30, 20, 0.85));
+  border: 2px solid #8fbf3f;
   box-shadow: -4px 4px 0 #0a0f1c, inset 0 0 0 2px rgba(255, 255, 255, 0.08);
 }
 

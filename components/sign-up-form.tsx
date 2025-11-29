@@ -50,10 +50,10 @@ export function SignUpForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="pixel-panel rounded-2xl border-primary/50 bg-gradient-to-br from-[rgba(18,32,24,0.92)] to-[rgba(12,24,18,0.95)] shadow-2xl">
         <CardHeader>
-          <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>Create a new account</CardDescription>
+          <CardTitle className="text-2xl text-primary">Sign up</CardTitle>
+          <CardDescription className="text-foreground/80">Create a new account</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSignUp}>
@@ -63,10 +63,11 @@ export function SignUpForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="ranger@forest.quest"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white/5 border-primary/40 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
               <div className="grid gap-2">
@@ -79,6 +80,7 @@ export function SignUpForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-white/5 border-primary/40 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
               <div className="grid gap-2">
@@ -91,16 +93,17 @@ export function SignUpForm({
                   required
                   value={repeatPassword}
                   onChange={(e) => setRepeatPassword(e.target.value)}
+                  className="bg-white/5 border-primary/40 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              {error && <p className="text-sm text-red-400">{error}</p>}
+              <Button type="submit" className="w-full pixel-button" disabled={isLoading}>
                 {isLoading ? "Creating an account..." : "Sign up"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="mt-4 text-center text-sm text-muted-foreground">
               Already have an account?{" "}
-              <Link href="/auth/login" className="underline underline-offset-4">
+              <Link href="/auth/login" className="underline underline-offset-4 text-primary">
                 Login
               </Link>
             </div>

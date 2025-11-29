@@ -22,9 +22,9 @@ export default function ProtectedLayout({
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-transparent via-transparent to-black/20">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(61,216,190,0.2),transparent_60%)] blur-3xl" />
-        <div className="absolute right-0 top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(242,193,79,0.25),transparent_55%)] blur-3xl" />
-        <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(255,109,109,0.15),transparent_55%)] blur-3xl" />
+        <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.18),transparent_60%)] blur-3xl" />
+        <div className="absolute right-0 top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.23),transparent_55%)] blur-3xl" />
+        <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(69,118,89,0.18),transparent_55%)] blur-3xl" />
       </div>
 
       <div className="relative flex-1 w-full flex flex-col items-center px-4 pb-16">
@@ -37,9 +37,6 @@ export default function ProtectedLayout({
               LearnQuest
             </Link>
             <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="hidden sm:inline-block rounded-md border border-primary/40 bg-black/30 px-3 py-1 font-semibold text-foreground shadow-inner">
-                Pixel Realm Online
-              </span>
               {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
             </div>
           </div>
