@@ -49,10 +49,10 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="pixel-panel rounded-2xl border-primary/50 bg-gradient-to-br from-[rgba(18,32,24,0.92)] to-[rgba(12,24,18,0.95)] shadow-2xl">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl text-primary">Login</CardTitle>
+          <CardDescription className="text-foreground/80">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
@@ -64,23 +64,16 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="ranger@forest.quest"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white/5 border-primary/40 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  
-                  {/* Implement later if desired. */}
-                  {/* <Link
-                    href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link> */}
                 </div>
                 <Input
                   id="password"
@@ -88,18 +81,19 @@ export function LoginForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-white/5 border-primary/40 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              {error && <p className="text-sm text-red-400">{error}</p>}
+              <Button type="submit" className="w-full pixel-button" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="mt-4 text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/sign-up"
-                className="underline underline-offset-4"
+                className="underline underline-offset-4 text-primary"
               >
                 Sign up
               </Link>

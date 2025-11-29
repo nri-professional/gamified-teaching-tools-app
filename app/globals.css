@@ -4,31 +4,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --background: 148 28% 8%;
+    --foreground: 43 56% 92%;
+    --card: 150 24% 11%;
+    --card-foreground: 43 56% 92%;
+    --popover: 148 28% 8%;
+    --popover-foreground: 43 56% 92%;
+    --primary: 96 42% 62%;
+    --primary-foreground: 142 52% 8%;
+    --secondary: 162 36% 40%;
+    --secondary-foreground: 43 56% 92%;
+    --muted: 152 18% 20%;
+    --muted-foreground: 43 30% 78%;
+    --accent: 33 62% 54%;
+    --accent-foreground: 43 56% 92%;
+    --destructive: 352 79% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 152 26% 28%;
+    --input: 152 26% 24%;
+    --ring: 96 42% 62%;
+    --chart-1: 96 42% 62%;
+    --chart-2: 162 36% 40%;
+    --chart-3: 33 62% 54%;
+    --chart-4: 25 37% 44%;
+    --chart-5: 326 70% 55%;
+    --radius: 0.35rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -64,5 +64,78 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      radial-gradient(circle at 18% 18%, rgba(116, 191, 99, 0.18), transparent 25%),
+      radial-gradient(circle at 82% 12%, rgba(236, 175, 93, 0.2), transparent 30%),
+      radial-gradient(circle at 20% 78%, rgba(67, 122, 94, 0.22), transparent 26%),
+      linear-gradient(145deg, #0f1c12 0%, #0b150e 38%, #12261a 100%);
+    background-size: 28px 28px, 28px 28px, 80% 80%, 65% 65%, 60% 60%, 100% 100%;
+    background-position: 0 0, 0 0, 15% 10%, 70% 5%, 8% 100%, 0 0;
+    image-rendering: pixelated;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-press-start), var(--font-body), system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: hsla(var(--primary), 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Pixel adventure helpers */
+.pixel-panel {
+  background: linear-gradient(145deg, rgba(16, 34, 25, 0.9), rgba(12, 26, 18, 0.92));
+  border: 3px solid #d7b46a;
+  box-shadow:
+    -8px 8px 0 #0a0f11,
+    inset 0 0 0 2px rgba(255, 255, 255, 0.05),
+    0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.pixel-chip {
+  background: linear-gradient(135deg, rgba(116, 191, 99, 0.16), rgba(12, 30, 20, 0.85));
+  border: 2px solid #8fbf3f;
+  box-shadow: -4px 4px 0 #0a0f1c, inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.pixel-button {
+  box-shadow: -3px 3px 0 #0a0f1c, inset 0 0 0 2px rgba(0, 0, 0, 0.28);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.pixel-button:active {
+  transform: translate(-2px, 2px);
+  box-shadow: -1px 1px 0 #0a0f1c, inset 0 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Soft page entrance */
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-page {
+  animation: fade-slide-in 340ms ease-out;
 }
