@@ -45,7 +45,9 @@ export default function ProtectedLayout({
         </nav>
 
         <div className="flex-1 flex flex-col gap-12 w-full max-w-6xl mt-10">
-          <ClassesProvider>{children}</ClassesProvider>
+          <div className="animate-page">
+            <ClassesProvider>{children}</ClassesProvider>
+          </div>
         </div>
       </div>
     </main>

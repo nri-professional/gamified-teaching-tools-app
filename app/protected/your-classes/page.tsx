@@ -65,7 +65,7 @@ export default function Page3() {
   };
 
   return (
-  <Card className="pixel-panel relative w-full max-w-[85vw] overflow-hidden rounded-3xl text-foreground">
+  <Card className="animate-page pixel-panel relative w-full max-w-[85vw] overflow-hidden rounded-3xl text-foreground">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-6 top-6 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.2),transparent_60%)] blur-xl" />
         <div className="absolute right-8 bottom-8 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.2),transparent_60%)] blur-xl" />

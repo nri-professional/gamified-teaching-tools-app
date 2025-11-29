@@ -84,7 +84,7 @@ export default function Page() {
   };
 
   return (
-    <div className="relative w-full flex justify-center">
+    <div className="relative w-full flex justify-center animate-page">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.15),transparent_60%)] blur-3xl" />
         <div className="absolute right-10 top-32 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.18),transparent_55%)] blur-3xl" />

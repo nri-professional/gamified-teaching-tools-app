@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Page() {
   return (
-    <main className="w-full flex justify-center">
+    <main className="w-full flex justify-center animate-page">
       <section className="pixel-panel relative mt-10 w-full max-w-4xl rounded-3xl px-8 py-10 text-foreground overflow-hidden">
         <div className="absolute right-6 top-6 text-primary/70">
           <Trees className="h-6 w-6 text-primary" />

@@ -56,7 +56,7 @@ export default function Page() {
   };
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center px-4 py-12">
+    <main className="relative flex min-h-screen items-center justify-center px-4 py-12 animate-page">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-10 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.16),transparent_60%)] blur-3xl" />
         <div className="absolute right-16 top-24 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.18),transparent_55%)] blur-3xl" />
