@@ -24,6 +24,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Trees, MapPinned } from "lucide-react";
 import { useClasses } from "../ClassesContext";
 
 export default function Page() {
@@ -83,22 +84,30 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-6xl pixel-panel rounded-3xl p-6 md:p-8">
+    <div className="relative w-full flex justify-center">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.15),transparent_60%)] blur-3xl" />
+        <div className="absolute right-10 top-32 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.18),transparent_55%)] blur-3xl" />
+        <div className="absolute left-1/2 bottom-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(67,122,94,0.22),transparent_55%)] blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-6xl pixel-panel rounded-3xl p-6 md:p-8 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
         {!selected ? (
-          <div className="space-y-4">
+          <div className="space-y-4 relative">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                  Guild Library
+                  Guild Grove
                 </p>
                 <h2 className="text-3xl text-primary">Browse Classes</h2>
                 <p className="text-sm text-muted-foreground">
                   Pick a quest and follow the path of squares. Finish the line to clear the dungeon.
                 </p>
               </div>
-              <div className="pixel-chip px-4 py-2 text-xs uppercase tracking-[0.18em] text-primary-foreground">
-                {classes.length} posted
+              <div className="pixel-chip flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground">
+                <Trees className="h-4 w-4" />
+                <span>{classes.length} posted</span>
               </div>
             </div>
 

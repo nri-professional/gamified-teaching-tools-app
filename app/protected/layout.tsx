@@ -13,6 +13,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { ClassesProvider } from "./ClassesContext";
+import { BookOpen } from "lucide-react";
 
 export default function ProtectedLayout({
   children,
@@ -32,8 +33,9 @@ export default function ProtectedLayout({
           <div className="w-full max-w-6xl flex justify-between items-center px-5 py-4 pixel-panel rounded-2xl backdrop-blur">
             <Link
               href={"/protected/main-menu"}
-              className="text-sm md:text-base tracking-[0.25em] text-primary hover:text-foreground transition-colors"
+              className="flex items-center gap-2 text-sm md:text-base tracking-[0.25em] text-primary hover:text-foreground transition-colors"
             >
+              <BookOpen className="h-5 w-5" />
               LearnQuest
             </Link>
             <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
