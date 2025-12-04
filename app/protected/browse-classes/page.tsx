@@ -17,13 +17,14 @@
   The file now includes larger cards, a sequential quiz that marks progress, a progress bar on cards, and an interactive path UI with SVG connectors.
 */
 
-'use client';
+"use client";
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Trees, MapPinned } from "lucide-react";
 import { useClasses } from "../ClassesContext";
 
 export default function Page() {
@@ -70,7 +71,7 @@ export default function Page() {
         }
       }, 600);
     } else {
-      setFeedback("Incorrect — try again.");
+      setFeedback("Incorrect - try again.");
     }
   };
 
@@ -83,38 +84,80 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-5xl p-6 border-2 border-white rounded-2xl">
+    <div className="relative w-full flex justify-center animate-page">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-10 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.15),transparent_60%)] blur-3xl" />
+        <div className="absolute right-10 top-32 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.18),transparent_55%)] blur-3xl" />
+        <div className="absolute left-1/2 bottom-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(67,122,94,0.22),transparent_55%)] blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-6xl pixel-panel rounded-3xl p-6 md:p-8 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
         {!selected ? (
-          <div>
-            <h2 className="text-3xl font-semibold text-slate-50 mb-6">Browse Classes</h2>
+          <div className="space-y-4 relative">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                  Guild Grove
+                </p>
+                <h2 className="text-3xl text-primary">Browse Classes</h2>
+                <p className="text-sm text-muted-foreground">
+                  Pick a quest and follow the path of squares. Finish the line to clear the dungeon.
+                </p>
+              </div>
+              <div className="pixel-chip flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground">
+                <Trees className="h-4 w-4" />
+                <span>{classes.length} posted</span>
+              </div>
+            </div>
+
             {classes.length === 0 ? (
-              <p className="text-sm text-slate-200">No classes yet. Create one!</p>
+              <p className="text-sm text-muted-foreground">
+                No classes yet. Forge one to begin your journey.
+              </p>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {classes.map((cls) => (
                   <Card
                     key={cls.id}
-                    className="cursor-pointer transform hover:scale-[1.02] transition-shadow shadow-md hover:shadow-xl p-0 overflow-hidden"
+                    className="cursor-pointer overflow-hidden rounded-2xl border-2 border-primary/50 bg-gradient-to-br from-[#0f1b2f] via-[#0f1628] to-[#0c1220] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl"
                     onClick={() => openClass(cls.id)}
                   >
-                    <div className="p-6 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-slate-50">
+                    <div className="p-6 text-foreground">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <div className="text-xl font-bold mb-2">{cls.title}</div>
-                          <div className="text-sm text-slate-300">{cls.qaList.length} questions</div>
+                          <div className="mb-2 text-xl font-semibold text-primary">
+                            {cls.title}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {cls.qaList.length} questions
+                          </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-xs text-slate-400">Creator</div>
-                          <div className="text-sm text-slate-200">{cls.owner === 'me' ? 'You' : 'Teacher'}</div>
+                          <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                            Creator
+                          </div>
+                          <div className="text-sm text-foreground">
+                            {cls.owner === "me" ? "You" : "Teacher"}
+                          </div>
                         </div>
                       </div>
-                      <p className="mt-4 text-sm text-slate-300 line-clamp-3">{cls.qaList.slice(0,3).map((q,i)=> `Q${i+1}: ${q.question}`).join(' — ')}</p>
+                      <p className="mt-4 line-clamp-3 text-sm text-muted-foreground">
+                        {cls.qaList
+                          .slice(0, 3)
+                          .map((q, i) => `Q${i + 1}: ${q.question}`)
+                          .join(" | ")}
+                      </p>
                       <div className="mt-4">
-                        <div className="h-2 bg-black/20 rounded-full w-full">
-                          <div className="h-2 bg-emerald-400 rounded-full" style={{ width: `${overallProgress(cls.id)}%` }} />
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-black/40">
+                          <div
+                            className="h-2 rounded-full bg-primary transition-all"
+                            style={{ width: `${overallProgress(cls.id)}%` }}
+                          />
                         </div>
-                        <div className="text-xs text-slate-300 mt-1">Progress: {overallProgress(cls.id)}%</div>
+                        <div className="mt-1 text-xs text-muted-foreground">
+                          Progress: {overallProgress(cls.id)}%
+                        </div>
                       </div>
                     </div>
                   </Card>
@@ -122,78 +165,134 @@ export default function Page() {
               </div>
             )}
           </div>
-          ) : (
-          <Card className="p-6 border-2 border-white">
-            <CardHeader className="flex items-center justify-between p-0">
-                <div className="w-full">
-                  <CardTitle className="text-2xl">{selected.title}</CardTitle>
-                  <p className="text-sm text-slate-300">Question {Math.min(index+1, selected.qaList.length)} of {selected.qaList.length}</p>
+        ) : (
+          <Card className="pixel-panel rounded-3xl p-6 md:p-7">
+            <CardHeader className="flex flex-col gap-4 p-0">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <CardTitle className="text-2xl text-primary">
+                    {selected.title}
+                  </CardTitle>
+                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    Question {Math.min(index + 1, selected.qaList.length)} of{" "}
+                    {selected.qaList.length}
+                  </p>
+                </div>
+                <Button variant="secondary" onClick={leaveClass} className="pixel-button">
+                  Leave
+                </Button>
+              </div>
 
-                  {/* Progress path: squares that represent each question in a path */}
-                  <div className="mt-4 flex flex-wrap gap-2 items-center justify-center">
-                    {(() => {
-                      const prog = getProgress(selected.id) || [];
-                      const allDone = selected.qaList.length > 0 && prog.filter(Boolean).length === selected.qaList.length;
-                      return selected.qaList.map((q, i) => {
-                        const done = Boolean(prog[i]);
-                        const isCurrent = i === index;
-                        const isLocked = !done && i !== index;
-                        return (
-                          <div key={i} className="flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (done || isCurrent) setIndex(i);
-                              }}
-                              className={`h-12 w-12 flex items-center justify-center rounded-md border-2 ${done ? 'bg-emerald-500 border-emerald-400 text-black' : isCurrent ? 'bg-amber-400 border-amber-300 text-black' : 'bg-black/20 border-black/40 text-slate-300'} ${isLocked ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
-                            >
-                              {i + 1}
-                            </button>
-                            {i < selected.qaList.length - 1 && (
-                              <div className="flex items-center">
-                                <svg className="w-10 h-6" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M0 8 C10 0, 30 16, 40 8" stroke={done ? '#34d399' : 'rgba(255,255,255,0.12)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      }).concat(
-                        <div key="final" className="flex items-center gap-2">
-                          <div className={`h-12 w-12 flex items-center justify-center rounded-md border-2 ${allDone ? 'bg-emerald-500 border-emerald-400 text-black' : 'bg-black/20 border-black/40 text-slate-300'}`}>
-                            🏁
-                          </div>
+              {/* Progress path: squares that represent each question in a path */}
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+                {(() => {
+                  const prog = getProgress(selected.id) || [];
+                  const allDone =
+                    selected.qaList.length > 0 &&
+                    prog.filter(Boolean).length === selected.qaList.length;
+                  return selected.qaList
+                    .map((q, i) => {
+                      const done = Boolean(prog[i]);
+                      const isCurrent = i === index;
+                      const isLocked = !done && i !== index;
+                      return (
+                        <div key={i} className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (done || isCurrent) setIndex(i);
+                            }}
+                            className={`h-12 w-12 rounded-md border-2 text-sm font-semibold transition-colors ${
+                              done
+                                ? "bg-emerald-400 border-emerald-300 text-emerald-950"
+                                : isCurrent
+                                  ? "bg-primary border-amber-200 text-primary-foreground"
+                                  : "bg-black/30 border-black/60 text-muted-foreground"
+                            } ${isLocked ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
+                          >
+                            {i + 1}
+                          </button>
+                          {i < selected.qaList.length - 1 && (
+                            <div className="flex items-center">
+                              <svg
+                                className="h-6 w-10"
+                                viewBox="0 0 40 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M0 8 C10 0, 30 16, 40 8"
+                                  stroke={done ? "#1dd0b1" : "rgba(255,255,255,0.16)"}
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          )}
                         </div>
                       );
-                    })()}
-                  </div>
-                </div>
-              <div className="flex items-center gap-2">
-                <Button variant="secondary" onClick={leaveClass}>Leave</Button>
+                    })
+                    .concat(
+                      <div key="final" className="flex items-center gap-2">
+                        <div
+                          className={`flex h-12 w-12 items-center justify-center rounded-md border-2 text-xs font-semibold ${
+                            allDone
+                              ? "bg-emerald-400 border-emerald-300 text-emerald-950"
+                              : "bg-black/30 border-black/60 text-muted-foreground"
+                          }`}
+                        >
+                          END
+                        </div>
+                      </div>
+                    );
+                })()}
               </div>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="pt-6">
               {selected.qaList.length === 0 ? (
-                <p className="text-sm text-slate-200">This class has no questions.</p>
+                <p className="text-sm text-muted-foreground">
+                  This class has no questions.
+                </p>
               ) : (
                 <form onSubmit={submitAnswer} className="space-y-4">
                   <div>
-                    <Label className="text-sm text-slate-300">{selected.qaList[index].question}</Label>
+                    <Label className="text-sm text-muted-foreground">
+                      {selected.qaList[index].question}
+                    </Label>
                   </div>
                   <div>
-                    <Input value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Type your answer here" />
+                    <Input
+                      value={answer}
+                      onChange={(e) => setAnswer(e.target.value)}
+                      placeholder="Type your answer here"
+                      className="border-primary/40 bg-black/40"
+                    />
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <Button type="submit">Submit</Button>
-                    <Button variant="ghost" onClick={() => { setAnswer(selected.qaList[index].answer); setFeedback('Revealed answer'); }}>Reveal</Button>
-                    <div className="text-sm text-slate-300">{feedback}</div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button type="submit" className="pixel-button">
+                      Submit
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        setAnswer(selected.qaList[index].answer);
+                        setFeedback("Revealed answer");
+                      }}
+                      className="pixel-button border border-transparent hover:border-muted"
+                    >
+                      Reveal
+                    </Button>
+                    <div className="text-sm text-primary">{feedback}</div>
                   </div>
 
-                  {feedback === 'Completed the class!' && (
+                  {feedback === "Completed the class!" && (
                     <div className="mt-4">
-                      <Button onClick={leaveClass}>Return to Browse</Button>
+                      <Button onClick={leaveClass} className="pixel-button">
+                        Return to Browse
+                      </Button>
                     </div>
                   )}
                 </form>

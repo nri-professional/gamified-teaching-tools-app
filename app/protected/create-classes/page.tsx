@@ -13,7 +13,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import BackgroundWrapper from "@/components/BackgroundWrapper";
+import { Trees, FilePlus2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useClasses } from "../ClassesContext";
 
@@ -51,17 +51,31 @@ export default function Page2() {
   };
 
   return (
-  <Card className="w-full max-w-[85vw] border-2 border-white bg-transparent text-slate-50 rounded-3xl">
-
-        <CardContent className="p-6">
+  <Card className="animate-page pixel-panel relative w-full max-w-[85vw] overflow-hidden rounded-3xl text-foreground">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-6 top-6 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.2),transparent_60%)] blur-xl" />
+          <div className="absolute right-8 bottom-8 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.2),transparent_60%)] blur-xl" />
+        </div>
+        <CardContent className="relative p-6">
           {/* TOP BAR: title only, full width */}
-          <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-            <h1 className="text-3xl font-semibold tracking-[0.25em]">
-              LearnQuest
-            </h1>
-            <p className="text-sm text-slate-100 md:text-right">
-              Create Lesson
-            </p>
+          <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-3">
+              <span className="pixel-chip flex h-10 w-10 items-center justify-center rounded-md">
+                <Trees className="h-5 w-5 text-primary" />
+              </span>
+              <div>
+                <h1 className="text-3xl font-semibold tracking-[0.25em]">
+                  LearnQuest
+                </h1>
+                <p className="text-sm text-muted-foreground md:text-left">
+                  Create Lesson
+                </p>
+              </div>
+            </div>
+            <div className="pixel-chip inline-flex items-center gap-2 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground">
+              <FilePlus2 className="h-4 w-4" />
+              <span>New dungeon</span>
+            </div>
           </div>
 
           {/* MAIN CONTENT: left + right columns */}
@@ -79,14 +93,14 @@ export default function Page2() {
                   placeholder="Title Dungeon"
                   value={dungeonTitle}
                   onChange={(e) => setDungeonTitle(e.target.value)}
-                  className="rounded-full border border-black/70 bg-black/20 backdrop-blur-sm"
+                  className="rounded-full border border-primary/40 bg-white/5 backdrop-blur-sm"
                 />
               </div>
 
               <div className="mt-auto flex flex-col gap-3">
                 <Button
                   type="submit"
-                  className="w-full rounded-full font-semibold"
+                  className="w-full rounded-full font-semibold pixel-button"
                 >
                   Submit
                 </Button>
@@ -100,7 +114,7 @@ export default function Page2() {
               {qaList.map((item, index) => (
                 <div
                   key={index}
-                  className="space-y-2 rounded-2xl border border-black/60 bg-black/20 p-4 backdrop-blur-sm"
+                  className="space-y-2 rounded-2xl border border-primary/30 bg-black/25 p-4 backdrop-blur-sm"
                 >
                   <p className="text-xs font-semibold text-slate-100">
                     Enemy #{index + 1}
@@ -121,7 +135,7 @@ export default function Page2() {
                       onChange={(e) =>
                         updateQA(index, "question", e.target.value)
                       }
-                      className="rounded-full border border-black/70 bg-black/20 text-sm backdrop-blur-sm"
+                      className="rounded-full border border-primary/40 bg-white/5 text-sm backdrop-blur-sm"
                     />
                   </div>
 
@@ -137,7 +151,7 @@ export default function Page2() {
                       onChange={(e) =>
                         updateQA(index, "answer", e.target.value)
                       }
-                      className="rounded-full border border-black/70 bg-black/20 text-sm backdrop-blur-sm"
+                      className="rounded-full border border-primary/40 bg-white/5 text-sm backdrop-blur-sm"
                     />
                   </div>
                 </div>
@@ -146,7 +160,7 @@ export default function Page2() {
               <Button
                 type="button"
                 onClick={addQuestion}
-                className="w-full rounded-full md:w-auto"
+                className="w-full rounded-full md:w-auto pixel-button"
                 variant="secondary"
               >
                 + Add Question

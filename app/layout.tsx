@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Press_Start_2P, Manrope } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -9,14 +10,21 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "LearnQuest",
+  description: "An adventuring, gamified learning realm.",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
+const pixelDisplay = Press_Start_2P({
+  variable: "--font-press-start",
+  weight: "400",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const bodySans = Manrope({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -26,14 +34,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body
+        className={`${bodySans.variable} ${pixelDisplay.variable} antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <div className="flex flex-1 flex-col">{children}</div>
+            <SiteFooter />
+          </div>
         </ThemeProvider>
       </body>
     </html>

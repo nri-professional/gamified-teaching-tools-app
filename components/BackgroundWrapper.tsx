@@ -4,7 +4,7 @@ type BackgroundWrapperProps = {
 
 export default function BackgroundWrapper({ children }: BackgroundWrapperProps) {
   return (
-    <div className="relative min-h-svh w-full overflow-hidden">
+    <div className="relative min-h-full w-full overflow-hidden">
       {/* Blurred Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-md brightness-75"
