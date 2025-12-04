@@ -1,5 +1,26 @@
 You must include an IMPLEMENTATION.md file that explains what feature you implemented, an explanation of what the generated code does and if it does what you were expecting, and what AI tool(s) was(were) used, how, and why. Also describe if any modifications were necessary to the prompts or code to get the submitted output.
 
+## Summary - features implemented - Nicholas Ricketts
+
+- Testing page with 6 implemented tests, all ensuring our log ins are functional.
+- Implements 5 unit tests, and 1 integration test.
+
+## Files changed / created - Nicholas Ricketts
+
+- app/testing/page.tsx - created
+  - Contains a page with a testing suite for LearnQuest
+
+## What the generated code does and verification notes - Nicholas Ricketts
+
+- The code runs tests on various functions imported from around the app.
+
+## AI tools used, how, and why - Kevin Toker
+
+- Tool used: Github Copilot with GPT-5.1-Codex-Max
+- How: I used the assistant to clean up my code and make it more understandable for others.
+- Why: I had to manually ensure that my code was functional and did not trust the AI tool to get that part right. Instead, it just cleaned up my code, fixing indents, making variable names more semantic, things like that.
+- Prompt: 'Can you make sure this page is easily understandable and functional? I need to hand this off to a colleague and want to ensure everything works good.'
+
 ## Summary — features implemented - Kevin Toker
 
 - Local in-browser classes store (no backend): create classes on the Create page, browse them on Browse Classes, and see them on Your Classes. Data persists to localStorage.
