@@ -14,7 +14,7 @@ Prompt: okay I deleted the remote branch, can I just sync my local branches or d
 
 export default function Page() {
   return (
-    <div className="animate-page flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+    <div className="animate-page flex w-full flex-1 items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
         <SignUpForm />
       </div>

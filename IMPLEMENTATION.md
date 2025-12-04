@@ -1,5 +1,49 @@
 You must include an IMPLEMENTATION.md file that explains what feature you implemented, an explanation of what the generated code does and if it does what you were expecting, and what AI tool(s) was(were) used, how, and why. Also describe if any modifications were necessary to the prompts or code to get the submitted output.
 
+## Summary — features implemented - Nicholas Ricketts (Footer)
+
+- Created a footer that loads on every route which uses `app/layout.tsx`
+- Footer code is in `components/site-footer.tsx`, this copy is used on all pages to keep theme consistent.
+- Updated `app/layout.tsx` to cooperate with footer and keep 1-page, no scrollbar theme.
+
+## Files changed / created - Nicholas Ricketts (Footer)
+
+- `components/site-footer.tsx` - NEW
+  - The footer component with our tag line and minor accreditation, featured at the bottom of all layouts.
+- `app/globals.css` - modified
+  - Defines the `footer-glisten` keyframes and `.animate-footer` helper css class for the footer's page-load animation.
+- `components/BackgroundWrapper.tsx` - modified
+  - Uses `min-h-full` so views with this wrapper size to their parent instead of the full viewport.
+  - This helps keep the 1-page, no scrollbar theme.
+- `app/auth/`
+    - `login/page.tsx` - modified
+    - `sign-up/page.tsx` - modified
+    - `sign-up-success/page.tsx` - modified
+    - `forgot-password/page.tsx` - modified
+    - `update-password/page.tsx` - modified
+    - `error/error.tsx` - modified
+      - All now use flex-1 wrapper to keep the 1-page, no scollbar theme.
+- `app/layout.tsx` - modified
+  - Imports the footer, wraps all children in a flex column, and anchors the footer beneath page content.
+- `app/protected/layout.tsx` - modified
+  - Switches the protected `main` container to `min-h-full flex flex-col` so it fills the parent height
+  - This also helps keep the 1-page, no scrollbar theme.
+
+## What the generated code does and verification notes - Nicholas Ricketts (Footer)
+
+- `SiteFooter` component
+  - Applies global theming to a footer component so that it can be attached elsewhere in layouts.
+  - Design was verified by looking at how it appeared on the various pages.
+- General modifications
+  - The code was verified to be UI-only changes, with no backend code that may mess anything up.
+  - Code was verified by navigating through pages in a dev environment and verifying that the code functions at multiple resolutions.
+
+## AI tools used, how, and why - Nicholas Ricketts (Footer)
+
+- Tool used: GitHub Copilot (GPT-5.1-Codex) within VS Code.
+- How: I used the code assistant in Agent mode to directly apply code edits while I oversaw it and ensured that it didn't break anything or begin to drift too far from what my prompts asked.
+- Why: To more quickly create a footer. Since this feature didn't modify backend, it isn't dangerous, which means AI is perfect for quickly prototyping different designs.
+
 ## Summary — features implemented - Kevin Toker
 
 - Local in-browser classes store (no backend): create classes on the Create page, browse them on Browse Classes, and see them on Your Classes. Data persists to localStorage.

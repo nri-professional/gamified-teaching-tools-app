@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, Manrope } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -42,7 +43,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <div className="flex flex-1 flex-col">{children}</div>
+            <SiteFooter />
+          </div>
         </ThemeProvider>
       </body>
     </html>

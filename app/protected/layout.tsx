@@ -21,7 +21,7 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-transparent via-transparent to-black/20">
+    <main className="relative flex min-h-full flex-col overflow-hidden bg-gradient-to-b from-transparent via-transparent to-black/20">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.18),transparent_60%)] blur-3xl" />
         <div className="absolute right-0 top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.23),transparent_55%)] blur-3xl" />
