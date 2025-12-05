@@ -8,6 +8,12 @@
   The page uses the ClassesContext methods `updateClass` and `getProgress` added earlier.
 */
 
+/*
+Update const to have a deleteClass method and add delete button to UI
+
+prompt used: "In this code, all I want you to add is a delete button next to the edit button" then pasted the previous code.
+*/
+
 "use client";
 
 import { useState } from "react";
@@ -19,7 +25,7 @@ import { Trees, Hammer } from "lucide-react";
 import { useClasses, ClassItem } from "../ClassesContext";
 
 export default function Page3() {
-  const { classes, updateClass, getProgress } = useClasses();
+  const { classes, updateClass, getProgress, deleteClass } = useClasses();
   const mine = classes.filter((c) => c.owner === "me");
 
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -65,7 +71,7 @@ export default function Page3() {
   };
 
   return (
-  <Card className="animate-page pixel-panel relative w-full max-w-[85vw] overflow-hidden rounded-3xl text-foreground">
+    <Card className="animate-page pixel-panel relative w-full max-w-[85vw] overflow-hidden rounded-3xl text-foreground">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-6 top-6 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(116,191,99,0.2),transparent_60%)] blur-xl" />
         <div className="absolute right-8 bottom-8 h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(215,180,106,0.2),transparent_60%)] blur-xl" />
@@ -99,11 +105,27 @@ export default function Page3() {
                   <div className="text-xs text-muted-foreground">{cls.qaList.length} Q</div>
                   <div className="w-28">
                     <div className="h-2 bg-black/20 rounded-full w-full">
-                      <div className="h-2 bg-primary rounded-full" style={{ width: `${progressPercent(cls.id)}%` }} />
+                      <div
+                        className="h-2 bg-primary rounded-full"
+                        style={{ width: `${progressPercent(cls.id)}%` }}
+                      />
                     </div>
                     <div className="text-xs text-muted-foreground mt-1">{progressPercent(cls.id)}%</div>
                   </div>
-                  <Button variant="ghost" className="pixel-button border border-transparent hover:border-primary/40" onClick={() => startEdit(cls)}>Edit</Button>
+                  <Button
+                    variant="ghost"
+                    className="pixel-button border border-transparent hover:border-red-500/60 text-red-400"
+                    onClick={() => deleteClass(cls.id)}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="pixel-button border border-transparent hover:border-primary/40"
+                    onClick={() => startEdit(cls)}
+                  >
+                    Edit
+                  </Button>
                 </div>
               </div>
 
@@ -111,24 +133,54 @@ export default function Page3() {
                 <div className="p-4 border border-border/60 rounded-md bg-black/20">
                   <div className="space-y-2">
                     <Label>Title</Label>
-                    <Input value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="bg-white/5 border-primary/40" />
+                    <Input
+                      value={editTitle}
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      className="bg-white/5 border-primary/40"
+                    />
                   </div>
 
                   <div className="mt-4 space-y-2">
                     <Label>Questions</Label>
                     {editQa.map((q, i) => (
                       <div key={i} className="flex gap-2">
-                        <Input value={q.question} onChange={(e) => setQaField(i, 'question', e.target.value)} placeholder={`Question ${i+1}`} className="bg-white/5 border-primary/40" />
-                        <Input value={q.answer} onChange={(e) => setQaField(i, 'answer', e.target.value)} placeholder={`Answer ${i+1}`} className="bg-white/5 border-primary/40" />
-                        <Button variant="ghost" className="pixel-button border border-transparent hover:border-primary/40" onClick={() => removeQa(i)}>Remove</Button>
+                        <Input
+                          value={q.question}
+                          onChange={(e) => setQaField(i, "question", e.target.value)}
+                          placeholder={`Question ${i + 1}`}
+                          className="bg-white/5 border-primary/40"
+                        />
+                        <Input
+                          value={q.answer}
+                          onChange={(e) => setQaField(i, "answer", e.target.value)}
+                          placeholder={`Answer ${i + 1}`}
+                          className="bg-white/5 border-primary/40"
+                        />
+                        <Button
+                          variant="ghost"
+                          className="pixel-button border border-transparent hover:border-primary/40"
+                          onClick={() => removeQa(i)}
+                        >
+                          Remove
+                        </Button>
                       </div>
                     ))}
-                    <Button onClick={addQa} className="pixel-button">+ Add Question</Button>
+                    <Button onClick={addQa} className="pixel-button">
+                      + Add Question
+                    </Button>
                   </div>
 
                   <div className="mt-4 flex gap-2">
-                    <Button onClick={saveEdit} className="pixel-button">Save</Button>
-                    <Button variant="ghost" className="pixel-button border border-transparent hover:border-primary/40" onClick={cancelEdit}>Cancel</Button>
+                    <Button onClick={saveEdit} className="pixel-button">
+                      Save
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="pixel-button border border-transparent hover:border-primary/40"
+                      onClick={cancelEdit}
+                    >
+                      Cancel
+                    </Button>
                   </div>
                 </div>
               )}

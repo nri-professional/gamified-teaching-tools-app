@@ -10,6 +10,7 @@
 
   This file implements a client-side classes provider (localStorage) and progress tracking.
 */
+/* Added deleteClass method*/
 
 "use client";
 
@@ -34,6 +35,7 @@ type ClassesContextType = {
   markQuestionComplete: (classId: string, questionIndex: number) => void;
   getProgress: (classId: string) => boolean[];
   clear: () => void;
+  deleteClass: (id: string) => void;
 };
 
 const ClassesContext = createContext<ClassesContextType | undefined>(undefined);
@@ -96,6 +98,10 @@ export const ClassesProvider = ({ children }: { children: React.ReactNode }) => 
     });
   };
 
+  const deleteClass = (id: string) =>{
+    setClasses((prev) => prev.filter((cls) => cls.id !== id));
+  };
+
   const markQuestionComplete = (classId: string, questionIndex: number) => {
     setProgress((p) => {
       const arr = p[classId] ? [...p[classId]] : [];
@@ -116,7 +122,7 @@ export const ClassesProvider = ({ children }: { children: React.ReactNode }) => 
   };
 
   return (
-    <ClassesContext.Provider value={{ classes, addClass, updateClass, markQuestionComplete, getProgress, clear }}>
+    <ClassesContext.Provider value={{ classes, addClass, updateClass, markQuestionComplete, getProgress, clear , deleteClass}}>
       {children}
     </ClassesContext.Provider>
   );
