@@ -154,6 +154,7 @@ Prompts used:
 
 ## Features implemented through AI Cody Cockrell
 # Summary: features implemented
+- Remodeled website, redid colors, some animations, flavor text, etc.
 - Public course browse API: **GET /api/courses**
 - Course creation API: **POST /api/courses**
 - Single course with levels and questions: **GET /api/courses/[slug]/structure**
@@ -164,6 +165,8 @@ Prompts used:
 - Frontend helpers: **getCourses**, **createCourse**, **getCourseStructure**, **getStreak**, **updateStreak**, **getUserCourseProgress**, **completeLevel**
 
 # Files added or updated
+- `all .ts files relating to main functions`
+- `css files and other stylization files`
 - `app/api/health/route.ts`
 - `app/api/courses/route.ts`
 - `app/api/courses/[slug]/structure/route.ts`
@@ -179,9 +182,10 @@ Prompts used:
 - RLS protects user data. Public content is readable without auth.
 - Verification for this: `/api/health` returns ok, courses list loads logged out, creating a course works when logged in, streak get and update work, completing a level updates both `user_level_progress` and `user_course_progress` once.
 - Outcome matches expectations.
+- Style changes to website
 
 # AI tools used, how, and why
-- **ChatGPT** was used to help design endpoints and general structure of the database.
+- **ChatGPT** was used to help design endpoints and general structure of the database, as well as modify the site style files.
 - I used it by describing the project to the AI and what I wanted to accomplish, and it gave me some options from there.
 - I used it to streamline the design process. I also used to generate files and code where I was not comfortable in the language and needed assistance.
 
