@@ -1,8 +1,10 @@
 /*
   NOTE (generated code trace):
-  The Main Menu page had its background image and fallback gradient removed in response to the user prompt:
+  The Main Menu page had its background image and fallback gradient removed in response to the user prompt in addition to adding a credits button:
 
   "remove the background image and fallback color gradient"
+
+  "Modify the main menu page to accomodate for this new credits page. Add a button that navigates to the credits page."
 
   The page otherwise retains its main navigation layout and styling.
 */
@@ -10,7 +12,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Flame, BookOpen, Trophy, User, FilePlus } from 'lucide-react';
+import { Flame, BookOpen, Trophy, User, FilePlus, Scroll } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Page() {
@@ -64,6 +66,13 @@ export default function Page() {
             <Link href="/protected/create-classes" className="flex items-center gap-4">
               <FilePlus className="w-7 h-7 text-[#c8a24a]" />
               Create Dungeons
+            </Link>
+          </Button>
+
+          <Button asChild variant="outline" className="flex items-center justify-center gap-4 px-4 py-3 border-2 border-[#c8a24a] rounded-md hover:bg-[#c8a24a]/20 transition-all bg-transparent text-[#f5e6c5]">
+            <Link href="/protected/credits" className="flex items-center gap-4">
+              <Scroll className="w-7 h-7 text-[#c8a24a]" />
+              Credits
             </Link>
           </Button>
         </nav>
