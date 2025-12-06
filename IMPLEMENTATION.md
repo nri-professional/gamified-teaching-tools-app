@@ -30,6 +30,7 @@ You must include an IMPLEMENTATION.md file that explains what feature you implem
 - Interactive path UI: question squares arranged in a path with SVG curved connectors; nodes show completed/current/locked states; final finish node appears when all questions are done.
 - Profile card: shows registered email (via `useUser()`), number of classes created, and number of classes fully completed.
 - Leaderboards & Main Menu visual tweaks: removed background image/gradient from main-menu and leaderboards, polished leaderboard rows, made Back button functional and responsive.
+- Credits Page: a new page listing project developers (Nicholas Ricketts, Kevin Toker, Julian Whitman, Cody Cockrell, Adrian Villatoro Uriona), accessible via a new button on the Main Menu.
 - Border color standardization: changed main "window" borders to white across protected pages except Main Menu and Leaderboards as requested.
 - Prompt-trace comments: top-of-file comments were added listing the prompts that produced the changes (for traceability).
 
@@ -58,7 +59,10 @@ You must include an IMPLEMENTATION.md file that explains what feature you implem
   - Removed background image & overlay, softened leaderboard row visuals, made Back button functional (navigates to `/protected/main-menu`), and adjusted header layout for small screens.
 
 - app/protected/main-menu/page.tsx — modified
-  - Removed the background image and fallback gradient. Kept navigation layout.
+  - Removed the background image and fallback gradient. Added a 'Credits' button to the navigation list.
+
+- app/protected/credits/page.tsx — created
+  - Displays a list of developer names in a style consistent with the application (parchment theme) and includes a back button to the Main Menu.
 
 - Small style changes in multiple files to change top-level card/container borders to `border-white` (except main-menu and leaderboards which keep their gold/parchment border look).
 
@@ -80,6 +84,9 @@ You must include an IMPLEMENTATION.md file that explains what feature you implem
 
 - Profile
   - Displays the current user's email (via `useUser()` from your existing lib) and counts of classes created and fully completed using `getProgress`.
+  
+- Credits Page
+  - Renders a static list of names provided in the requirement. Includes a 'Back to Menu' button that navigates to /protected/main-menu. Style matches the main menu parchment look.
 
 Limitations / expectations
 

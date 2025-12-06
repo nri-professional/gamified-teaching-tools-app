@@ -1,36 +1,21 @@
-/*
-  NOTE (generated code trace):
-  The following file was created/modified by assistant code changes in response to the user's request:
-
-  User prompt that led to this code:
-  "i want to make it so when the user hits submit on the create classes page, it shows up on the browse classes page, as well as updating their your classes page to show the class that they made. there is no database so just have this happen locally (See <attachments> above for file contents. You may not need to search or read the file again.)"
-
-  Follow-up user prompt that added progress features:
-  "within the your classes page, you should be able to edit the questions along with browse classes monitoring your progress on the questions with a percentage progress bar of how many classes you've completed."
-
-  This file implements a client-side classes provider (localStorage) and progress tracking.
-*/
-
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+// 1. IMPORT 'Course' HERE
+import { sharedClasses, addSharedClass, Course } from "@/lib/sharedStore"; 
 
 type QAItem = {
   question: string;
   answer: string;
 };
 
-export type ClassItem = {
-  id: string;
-  title: string;
-  qaList: QAItem[];
-  owner: "me" | "other";
-};
+// We can remove ClassItem and just use Course to keep types consistent
+// or alias it if you prefer. For simplicity, we use Course.
 
 type ClassesContextType = {
-  classes: ClassItem[];
+  classes: Course[];
   addClass: (title: string, qaList: QAItem[]) => void;
-  updateClass: (updated: ClassItem) => void;
+  updateClass: (updated: Course) => void;
   markQuestionComplete: (classId: string, questionIndex: number) => void;
   getProgress: (classId: string) => boolean[];
   clear: () => void;
@@ -39,14 +24,21 @@ type ClassesContextType = {
 const ClassesContext = createContext<ClassesContextType | undefined>(undefined);
 
 export const ClassesProvider = ({ children }: { children: React.ReactNode }) => {
-  const [classes, setClasses] = useState<ClassItem[]>([]);
   const [progress, setProgress] = useState<Record<string, boolean[]>>({});
+  
+  // Initialize with sharedClasses so the Test data appears immediately
+  const [classes, setClasses] = useState<Course[]>(sharedClasses);
 
   // hydrate from localStorage
   useEffect(() => {
     try {
       const raw = localStorage.getItem("learnquest_classes");
-      if (raw) setClasses(JSON.parse(raw));
+      if (raw) {
+        const localData = JSON.parse(raw);
+        // Optional: Merge local storage with sharedClasses if needed, 
+        // but for now, we just ensure we have data.
+        if (localData.length > 0) setClasses(localData);
+      }
     } catch (e) {
       // ignore
     }
@@ -75,14 +67,26 @@ export const ClassesProvider = ({ children }: { children: React.ReactNode }) => 
     } catch (e) {}
   }, [progress]);
 
+  // MERGED addClass FUNCTION
   const addClass = (title: string, qaList: QAItem[]) => {
-    const id = Date.now().toString();
-    const newClass: ClassItem = { id, title, qaList, owner: "me" };
+    const newClass: Course = {
+      id: crypto.randomUUID(),
+      title,
+      owner: "me",
+      qaList,
+    };
+
+    // 1. Update React State (UI updates immediately)
     setClasses((prev) => [newClass, ...prev]);
-    setProgress((p) => ({ ...p, [id]: new Array(qaList.length).fill(false) }));
+
+    // 2. Update Shared Store (Test suite sees this)
+    addSharedClass(newClass);
+
+    // 3. Initialize Progress
+    setProgress((p) => ({ ...p, [newClass.id]: new Array(qaList.length).fill(false) }));
   };
 
-  const updateClass = (updated: ClassItem) => {
+  const updateClass = (updated: Course) => {
     setClasses((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
     setProgress((p) => {
       const prevArr = p[updated.id] || [];
